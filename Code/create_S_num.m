@@ -19,7 +19,9 @@ X = linspace(0,L,n);
 S=zeros(2*n,2*n);
 
 % Matrix füllen
-% TODO: Gibt es eigentlich auch Switch in Matlab???
+% TODO: Umbauen auf Switch
+% Wir gehen die Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
+% und schreiben jeweils das zugehörige integral hin.
 
 for j = 1:1:2*n
     for k = j-3:1:j+3
@@ -31,7 +33,7 @@ for j = 1:1:2*n
             if mod(j,2)==0
                 S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
             else
-                S(j,k)=quad(@(x)(E(x).*I(x)*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
             end
         elseif j-k==2
             if mod(j,2)==0

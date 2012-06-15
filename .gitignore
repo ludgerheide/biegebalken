@@ -9,3 +9,7 @@
 # OSX / *nix default autosave extension
 *.m~
 
+
+Code/.DS_Store
+
+.DS_Store

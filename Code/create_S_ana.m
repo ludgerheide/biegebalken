@@ -1,5 +1,6 @@
-function [ S ] = create_S( E, I, L, n, precision )
-% Erstellt die Stefigkeitsmatrix S
+function [ S ] = create_S_ana( E, I, L, n)
+% Erstellt die Steifigkeitsmatrix S durch analytisches Lösen des Integrals
+% und unter Annahme von Stückweise Konstanten E-und I-Werten
 % E ist das E-Modul von x
 % I ist das Flächenträgheitsmoment 1. Ordnung von x
 % L ist die Länge des Balkens
@@ -7,10 +8,6 @@ function [ S ] = create_S( E, I, L, n, precision )
 
 % h ist die Länge eines Intervalls
 h = L/(n-1);
-
-% x ist ein Vektor von 0 bis L, der jeweils zwischen den Stützstellen
-% precision Werte enthält
-x = linspace(0,L,(n-1)*precision);
 
 %x_i ist ein Vektor, der die x-Koordinaten aller Knoten enthält
 x_i = linspace(0,L,n);
