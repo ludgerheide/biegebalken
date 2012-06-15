@@ -1,5 +1,5 @@
-function [ S ] = create_S( E, I, L, n, precision )
-% Erstellt die Stefigkeitsmatrix S
+function [ S ] = create_S_num( E, I, L, n, precision )
+% Erstellt die Steifigkeitsmatrix S durch numerisches Lösen der Integrale.
 % E ist das E-Modul von x
 % I ist das Flächenträgheitsmoment 1. Ordnung von x
 % L ist die Länge des Balkens
@@ -12,83 +12,117 @@ h = L/(n-1);
 % precision Werte enthält
 x = linspace(0,L,(n-1)*precision);
 
-%x_i ist ein Vektor, der die x-Koordinaten aller Knoten enthält
-x_i = linspace(0,L,n);
+%X ist ein Vektor, der die x-Koordinaten aller Knoten enthält
+X = linspace(0,L,n);
+ 
+%S erstellen
+S=zeros(2*n,2*n);
 
+% Matrix füllen
+% TODO: Gibt es eigentlich auch Switch in Matlab???
+
+for j = 1:1:2*n
+    for k = j-3:1:j+3
+        if k<=0
+            sprintf('Nothing done, k<=0');
+        elseif k>=2*n
+            sprintf('Nothing done, k>=2n');
+        elseif j-k==3
+            if mod(j,2)==0
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+            else
+                S(j,k)=quad(@(x)(E(x).*I(x)*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+            end
+        elseif j-k==2
+            if mod(j,2)==0
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+            else
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+            end
+        elseif j-k==1
+            if mod(j,2)==0
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+            else
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+            end
+        elseif j==k
+            if mod(j,2)==0
+                S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i(x,X,(j/2),h,n).^2)),0,L,precision);
+            else
+                S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i_1(x,X,((j+1)/2),h,n).^2)),0,L,precision);
+            end
+        elseif j-k==-1
+            if k-2 >= 1
+                S(j,k)=S(j,(k-2));
+            else
+                if mod(j,2)==0
+                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                else
+                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                end
+            end
+        elseif j-k==-2
+            if k-4 >= 1
+                S(j,k)=S(j,(k-4));
+            else
+                if mod(j,2)==0
+                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                else
+                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                end
+            end
+        elseif j-k==-3
+            if k-6 >= 1
+                S(j,k)=S(j,(k-6));
+            else
+                if mod(j,2)==0
+                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                else
+                    S(j,k)=quad(@(x)(E(x).*I(x)*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                end
+            end
+        else
+            sprintf('Error in create_S');
+        end
+    end
+end
+
+end
+
+function p2_1 = phi2i_1(x,X,i,h,n)
 % Funktionsdeklarationen von phiQuer''
 phiQuer1 = @(z) (12 * z - 6);
 phiQuer2 = @(z) (6 * z - 4);
 phiQuer3 = @(z) (-12 * z + 6);
 phiQuer4 = @(z) (6 * z - 2);
-
-% Funktionsdeklarationen für die 1. Hauptdiagonale
-phiQuadratGerade = @(x, x_i, i, h) ((1/h^2 * (phiQuer4((x - x_i(i-1))/h))^2) .* and ( x_i(i-1)*ones(size(x)) <= x, x <= x_i(i)*ones(size(x))) + ...
-                                    (1/h^2 * (phiQuer1((x - x_i(i))/h))^2) .* and ( x_i(i)*ones(size(x)) <= x, x <= x_i(i+1)*ones(size(x))));
-                                
-phiQuadratUngerade = @(x, x_i, i, h) ((1/h^2 * (phiQuer3((x - x_i(i-1))/h))^2) .* and ( x_i(i-1)*ones(size(x)) <= x, x <= x_i(i)*ones(size(x))) + ...
-                                      (1/h^2 * (phiQuer1((x - x_i(i))/h))^2) .* and ( x_i(i)*ones(size(x)) <= x, x <= x_i(i+1)*ones(size(x))));
-                                  
-% Funktionsdeklarationen neben der 1. Hauptdiagonale
-phi_gleich = @(x, x_i, i, h) ((1/h^2 * (phiQuer3((x - x_i(i-1))/h)) * (phiQuer4((x - x_i(i-1))/h)) .* and ( x_i(i-1)*ones(size(x)) <= x, x <= x_i(i)*ones(size(x)))) + ...
-                              (1/h^2 * (phiQuer1((x - x_i(i))/h)) * (phiQuer1((x - x_i(i))/h)) .* and ( x_i(i)*ones(size(x)) <= x, x <= x_i(i+1)*ones(size(x)))));
-                          
-phi_ungleich = @(x, x_i, i, h) (1/h^2 * (phiQuer3((x - x_i(i))/h)) * (phiQuer2((x - x_i(i))/h)) .* and ( x_i(i)*ones(size(x)) <= x, x <= x_i(i+1)*ones(size(x))));
-
-%S erstellen
-S=zeros(2*n,2*n);
-
-% Erste Hauptdiagonale füllen
-% Die ersten beiden sowie die letzte Zeile werden zunächst ausgenommen
-
-% Zählvariable zv wird eingeführt, um zu prüfen, wann die i-Werte der
-% Matrixeinträge gleich sind (zv wird inkrementiert und durch 2 dividiert,
-% der Rest gibt jeden 2. Schritt an, ob die i-Werte gleich sind
-zv = 0;
-
-for j = 3:1:2*n-1
-    for k = j-1:1:j+1
-        
-        if(k == j-1)
-        
-            % Der untere Matrixeintrag wird gespiegelt
-            S(j,k) = S(k,j);
-                        
-        elseif(k == j)
-            
-            if(mod(k,2) == 0)
-                
-                % Wir sind bei j=k=gerade
-                %S(j,k) = phiQuadratGerade(x, x_i, j/2, h);
-                S(j,k) = 1;
-                
-            else
-                
-                % j und k können nur ungerade sein
-                % S(j,k) = phiQuadratUngerade(x, x_i, (j+1)/2, h);
-                S(j,k) = 2;
-            
-            end
-        
-        else
-            
-            % jetzt kann nur die obere 2. Diagonale eintreten
-            if(mod(zv,2) == 0)
-                
-                S(j,k) = 3;
-                
-            else
-                
-                S(j,k) = 4;
-            end
-                
-            zv = zv + 1;
-            
-        end
-        
-        
+    if i==1
+        %Phi(1)
+        p2_1 = ((1/h.^2)*phiQuer1(x)) .* and(X(1)*ones(size(x)) <= x , x <= X(2)*ones(size(x)));
+    elseif i==n
+        %Phi(2n-1)
+        p2_1 = ((1/h^2)*phiQuer3((x - X(n-1)) / h) .* and ( X(n-1)*ones(size(x)) <= x, x <= X(n)*ones(size(x))));
+    else
+        %Phi(2i-1)
+        p2_1 = ((1/h.^2)*phiQuer3((x - X(i-1)) / h) .* and ( X(i-1)*ones(size(x)) <= x, x <= X(i)*ones(size(x))) + ...
+                           (1/h.^2)*phiQuer1((x - X(i)) / h) .* and ( X(i)*ones(size(x)) <= x, x <= X(i+1)*ones(size(x))));
     end
-    
 end
 
+function p2 = phi2i(x,X,i,h,n)
+% Funktionsdeklarationen von phiQuer''
+phiQuer1 = @(z) (12 * z - 6);
+phiQuer2 = @(z) (6 * z - 4);
+phiQuer3 = @(z) (-12 * z + 6);
+phiQuer4 = @(z) (6 * z - 2);
+    if i==1
+        %Phi(2)
+        p2 = ((1/h)*phiQuer2(x)) .* and(X(1)*ones(size(x)) <= x, x <= X(2)*ones(size(x)));
+    elseif i==n
+        %Phi(2n)
+        p2 = ((1/h)*phiQuer4((x - X(n-1)) / h) .* and ( X(n-1)*ones(size(x)) <= x, x <= X(n)*ones(size(x))));
+    else
+        %Phi(2i)
+        p2 = ((1/h) * phiQuer4((x - X(i-1)) / h) .* and ( X(i-1)*ones(size(x)) <= x, x <= X(i)*ones(size(x))) + ...
+                           (1/h) * phiQuer2((x - X(i)) / h) .* and ( X(i)*ones(size(x)) <= x, x <= X(i+1)*ones(size(x))));
+    end
 end
-
