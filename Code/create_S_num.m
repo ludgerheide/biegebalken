@@ -10,7 +10,7 @@ h = L/(n-1);
 
 % x ist ein Vektor von 0 bis L, der jeweils zwischen den Stützstellen
 % precision Werte enthält
-x = linspace(0,L,(n-1)*precision);
+x = linspace(0,L,(n-1)*(1/precision));
 
 %X ist ein Vektor, der die x-Koordinaten aller Knoten enthält
 X = linspace(0,L,n);
