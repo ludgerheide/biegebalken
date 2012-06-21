@@ -20,14 +20,14 @@ S=zeros(2*n,2*n);
 
 % Matrix füllen
 % TODO: Umbauen auf Switch
-% Wir gehen die Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
+% Wir gehen jede Zeile der Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
 % und schreiben jeweils das zugehörige integral hin.
 
-for j = 1:1:2*n
-    for k = j-3:1:j+3
+for j = 1:1:2*n % Zeilen
+    for k = j-3:1:j+3 %Spalten
         if k<=0
             sprintf('Nothing done, k<=0');
-        elseif k>=2*n
+        elseif k>2*n
             sprintf('Nothing done, k>=2n');
         elseif j-k==3
             if mod(j,2)==0
@@ -53,41 +53,14 @@ for j = 1:1:2*n
             else
                 S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i_1(x,X,((j+1)/2),h,n).^2)),0,L,precision);
             end
-        elseif j-k==-1
-            if k-2 >= 1
-                S(j,k)=S(j,(k-2));
-            else
-                if mod(j,2)==0
-                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
-                else
-                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
-                end
-            end
-        elseif j-k==-2
-            if k-4 >= 1
-                S(j,k)=S(j,(k-4));
-            else
-                if mod(j,2)==0
-                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
-                else
-                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
-                end
-            end
-        elseif j-k==-3
-            if k-6 >= 1
-                S(j,k)=S(j,(k-6));
-            else
-                if mod(j,2)==0
-                    S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
-                else
-                    S(j,k)=quad(@(x)(E(x).*I(x)*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
-                end
-            end
         else
             sprintf('Error in create_S');
         end
     end
 end
+
+%S "spiegeln"
+S=S+(S - diag(diag(S)))';
 
 end
 
