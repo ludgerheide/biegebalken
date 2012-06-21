@@ -1,0 +1,10 @@
+create_S_num debuggen
+	es gibt eine leere Spalte am Ende
+create_S_ana erstellen
+	Sämtliche Möglichen Integral(phi''j*phi''k) berechnen
+	Modifizierte Version von create_S_num mit einsetzen
+solve
+	Löst dann den statischen Fall, ich weiß nicht genau wie soll mit Backslash gehen
+dynamischen Fall einführen
+biegebalken.m schreiben (fügt die create_ und solve und plot zusammen und berechnet eine Lösung)
+	Nach Wahl noch mit ein bisschen Intelligenz, die das beste Lösungsverfahren auswählt
