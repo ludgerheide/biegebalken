@@ -6,27 +6,35 @@ function [u, L1, L2] = solve_static(S, q_, lager, a, b)
 %               q_ ist der Vektor mit den Integralen für q*phi
 %               lager steht für die Art der Lagerung
 %               Mögliche Werte: 1 Feste Einspannung     Kein Lager
-
-ed1=zeros(size(S),1);
-ed2=zeros(size(S),1);
+%                               2 Loslager              Loslager
+groesse=size(S);
+groesse=groesse(1);
+ed1=zeros(groesse,1);
+ed2=zeros(groesse,1);
 
 switch lager
     case 1
-        %Wir haben ein einseitiges Festlager
-        ed1(1)=1
-        ed2(2)=1
+        %Wir haben ein einseitiges Festlager, a ist die Auslenkung am
+        %Anfang, b ist die Steigung
+        ed1(1)=1;
+        ed2(2)=1;
     case 2
-        sprintf('blubb');
+        % Wir haben ein beideseitiges Loslager, a ist die Auslenkung am
+        % Anfang, b die am Ende
+        ed1(1)=1;
+        ed2(groesse-1)=-1;
 end
    
-CSST=[S ed1 ed2; ed1' 0 0; ed2' 0 0];
+CSST=[S ed1 ed2; ed1' 0 0; ed2' 0 0]
 
 fab= [q_; a; b];
 
 loesung=CSST\fab;
 
-u=loesung(1:size(loesung)-2);
-%L1=loesung(size(loesung)-1);
-%L2=loesung(size(loesung));
+groesse=size(loesung);
+groesse=groesse(1);
+u=loesung(1:size(loesung)-2)
+L1=loesung(groesse-1)
+L2=loesung(groesse)
 
 end

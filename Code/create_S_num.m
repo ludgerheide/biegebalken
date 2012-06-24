@@ -39,7 +39,7 @@ for j = 1:1:2*n % Zeilen
             if mod(j,2)==0
                 S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
             else
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
             end
         elseif j-k==1
             if mod(j,2)==0

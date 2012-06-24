@@ -1,4 +1,4 @@
-function biegelinienplot_alt(u,L)
+function biegelinienplot_langsam(u,L)
 % Plottet die Biegelinie eines Balkens der Länge L
 % u ist ein Vektor, der abwechselnd Auslenkung und Steigung der Linie an
 % Punkten gleichen Abstandes enthält.
@@ -8,12 +8,12 @@ function biegelinienplot_alt(u,L)
 % Berechnung der Anzahl der Intervalle
 n = length(u)/2;
 h = L/(n-1);
-umax=max(u(1:2:length(u)))
+umax=abs(max(u(1:2:length(u))));
 
 % Vorbereiten des Plots
 figure;
 hold on
-axis([0,L,0,umax]);
+axis([0,L,-umax,umax]);
 
 
 for i=1:n-1   
