@@ -1,11 +1,11 @@
 function [u, L1, L2] = solve_static(S, q_, lager, a, b)
 % Berechnet den Vektor u, sowie die Lagerreaktionen L1 und L2
-% L1 und L2 können abhängig von der Lagerung Momente oder Kräfte sein
+% L1 und L2 kÃ¶nnen abhÃ¤ngig von der Lagerung Momente oder KrÃ¤fte sein
 % Eigabewerte:  S ist die Matrix S, numerisch oder analytisch erstellt
 %               a und b sind die Randbedingungen
-%               q_ ist der Vektor mit den Integralen für q*phi
-%               lager steht für die Art der Lagerung
-%               Mögliche Werte: 1 Feste Einspannung     Kein Lager
+%               q_ ist der Vektor mit den Integralen fÃ¼r q*phi
+%               lager steht fÃ¼r die Art der Lagerung
+%               MÃ¶gliche Werte: 1 Feste Einspannung     Kein Lager
 %                               2 Loslager              Loslager
 groesse=size(S);
 groesse=groesse(1);
@@ -25,7 +25,7 @@ switch lager
         ed2(groesse-1)=-1;
 end
    
-CSST=[S ed1 ed2; ed1' 0 0; ed2' 0 0]
+CSST=[S ed1 ed2; ed1' 0 0; ed2' 0 0];
 
 fab= [q_; a; b];
 
@@ -33,8 +33,8 @@ loesung=CSST\fab;
 
 groesse=size(loesung);
 groesse=groesse(1);
-u=loesung(1:size(loesung)-2)
-L1=loesung(groesse-1)
-L2=loesung(groesse)
+u=loesung(1:size(loesung)-2);
+L1=loesung(groesse-1);
+L2=loesung(groesse);
 
 end

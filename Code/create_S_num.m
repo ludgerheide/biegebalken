@@ -1,57 +1,53 @@
 function [ S ] = create_S_num( E, I, L, n, precision )
-% Erstellt die Steifigkeitsmatrix S durch numerisches Lösen der Integrale.
+% Erstellt die Steifigkeitsmatrix S durch numerisches LÃ¶sen der Integrale.
 % E ist das E-Modul von x
-% I ist das Flächenträgheitsmoment 1. Ordnung von x
-% L ist die Länge des Balkens
+% I ist das FlÃ¤chentrÃ¤gheitsmoment 1. Ordnung von x
+% L ist die LÃ¤nge des Balkens
 % n ist die Anzahl der Knoten
 
-% h ist die Länge eines Intervalls
+% h ist die LÃ¤nge eines Intervalls
 h = L/(n-1);
 
-% x ist ein Vektor von 0 bis L, der jeweils zwischen den Stützstellen
-% precision Werte enthält
-x = linspace(0,L,(n-1)*(1/precision));
-
-%X ist ein Vektor, der die x-Koordinaten aller Knoten enthält
+%X ist ein Vektor, der die x-Koordinaten aller Knoten enthÃ¤lt
 X = linspace(0,L,n);
  
 %S erstellen
 S=zeros(2*n,2*n);
 
-% Matrix füllen
+% Matrix fÃ¼llen
 % TODO: Umbauen auf Switch
 % Wir gehen jede Zeile der Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
-% und schreiben jeweils das zugehörige integral hin.
+% und schreiben jeweils das zugehÃ¶rige integral hin.
 
 for j = 1:1:2*n % Zeilen
-    for k = j-3:1:j+3 %Spalten
+    for k = j-3:1:j %Spalten
         if k<=0
             sprintf('Nothing done, k<=0');
         elseif k>2*n
             sprintf('Nothing done, k>=2n');
         elseif j-k==3
             if mod(j,2)==0
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),X((k+1)/2)-h,X(j/2)+h,precision);
             else
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),X(k/2)-h,X((j+1)/2)+h,precision);
             end
         elseif j-k==2
             if mod(j,2)==0
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i(x,X,(k/2),h,n)),X(k/2)-h,X(j/2)+h,precision);
             else
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),X((k+1)/2)-h,X((j+1)/2)+h,precision);
             end
         elseif j-k==1
             if mod(j,2)==0
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),X((k+1)/2)-h,X(j/2)+h,precision);
             else
-                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*phi2i_1(x,X,((j+1)/2),h,n).*phi2i(x,X,(k/2),h,n)),X(k/2)-h,X((j+1)/2)+h,precision);
             end
         elseif j==k
             if mod(j,2)==0
-                S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i(x,X,(j/2),h,n).^2)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i(x,X,(j/2),h,n).^2)),X(j/2)-h,X(j/2)+h,precision);
             else
-                S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i_1(x,X,((j+1)/2),h,n).^2)),0,L,precision);
+                S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i_1(x,X,((j+1)/2),h,n).^2)),X((j+1)/2)-h,X((j+1)/2)+h,precision);
             end
         else
             sprintf('Error in create_S');
@@ -72,7 +68,7 @@ phiQuer3 = @(z) (-12 * z + 6);
 phiQuer4 = @(z) (6 * z - 2);
     if i==1
         %Phi(1)
-        p2_1 = ((1/h.^2)*phiQuer1(x)) .* and(X(1)*ones(size(x)) <= x , x <= X(2)*ones(size(x)));
+        p2_1 = ((1/h.^2)*phiQuer1(x/h)) .* and(X(1)*ones(size(x)) <= x , x <= X(2)*ones(size(x)));
     elseif i==n
         %Phi(2n-1)
         p2_1 = ((1/h^2)*phiQuer3((x - X(n-1)) / h) .* and ( X(n-1)*ones(size(x)) <= x, x <= X(n)*ones(size(x))));
@@ -91,7 +87,7 @@ phiQuer3 = @(z) (-12 * z + 6);
 phiQuer4 = @(z) (6 * z - 2);
     if i==1
         %Phi(2)
-        p2 = ((1/h)*phiQuer2(x)) .* and(X(1)*ones(size(x)) <= x, x <= X(2)*ones(size(x)));
+        p2 = ((1/h)*phiQuer2(x/h)) .* and(X(1)*ones(size(x)) <= x, x <= X(2)*ones(size(x)));
     elseif i==n
         %Phi(2n)
         p2 = ((1/h)*phiQuer4((x - X(n-1)) / h) .* and ( X(n-1)*ones(size(x)) <= x, x <= X(n)*ones(size(x))));

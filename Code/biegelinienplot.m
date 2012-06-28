@@ -1,6 +1,9 @@
 function biegelinienplot( u, L )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+% Plottet die Biegelinie eines Balkens der Länge L
+% u ist ein Vektor, der abwechselnd Auslenkung und Steigung der Linie an
+% Punkten gleichen Abstandes enthält.
+% Auslenkung sind die ungeraden Einträge von u
+% Steigung sind die geraden Einträge.
 
 n = length(u) / 2;
 h = L / (n-1);
