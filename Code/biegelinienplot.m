@@ -48,8 +48,8 @@ phi_4 = @(xi) horner([ 1, -1, 0, 0 ],xi);
     end
 
   end
-
-Y = 0:.1:L;
+Yn = 100;
+Y = linspace(0,L,Yn);
 plot(Y,phi(Y));
 
 end
