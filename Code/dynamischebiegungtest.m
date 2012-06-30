@@ -19,7 +19,7 @@ lager = 'fest_links';
 figure
 biegelinienplot(u,L);
 
-ht = 1;
+ht = .1^6;
 mu = @(x) 1;
 
 M = massenbelegungsmatrix(mu,L,n);
