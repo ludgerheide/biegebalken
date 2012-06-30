@@ -13,12 +13,12 @@ ed1=zeros(groesse,1);
 ed2=zeros(groesse,1);
 
 switch lager
-    case 1
+    case 'fest_links'
         %Wir haben ein einseitiges Festlager, a ist die Auslenkung am
         %Anfang, b ist die Steigung
         ed1(1)=1;
         ed2(2)=1;
-    case 2
+    case 'loslager'
         % Wir haben ein beideseitiges Loslager, a ist die Auslenkung am
         % Anfang, b die am Ende
         ed1(1)=1;
