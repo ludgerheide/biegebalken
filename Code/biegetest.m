@@ -1,5 +1,5 @@
 
-% Taylor-Polynom 7-ten Grades für sin(x) um 0
+% Taylor-Polynom 7-ten Grades fuer sin(x) um 0
 
 taylor_sin = [ -1/5040, 0, 1/120, 0, -1/6, 0, 1, 0 ];
 

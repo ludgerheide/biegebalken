@@ -1,19 +1,19 @@
 function [U] = solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
-% Berechnet die Matrix U, die Untereinander die Zeilenvektoren u(t)' enthält
-% L1 und L2 können abhängig von der Lagerung Momente oder Kräfte sein
+% Berechnet die Matrix U, die Untereinander die Zeilenvektoren u(t)' enthaelt
+% L1 und L2 koennen abhaengig von der Lagerung Momente oder Kraefte sein
 % Eigabewerte:  S ist die Matrix S, numerisch oder analytisch erstellt
 %				M ist die Matrix M, numerisch oder analytisch erstellt
 %				u_ ist die Auslenkng zum Startzeitpunkt. Sie kann entweder mit solve_static
 %				   berechnet werden oder direkt angegeben werden
 %               a und b sind die Randbedingungen
-%               q_ ist der Vektor mit den Integralen für q*phi
-%               lager steht für die Art der Lagerung
-%               Mögliche Werte: 1 Feste Einspannung     Kein Lager
+%               q_ ist der Vektor mit den Integralen fuer q*phi
+%               lager steht fuer die Art der Lagerung
+%               Moegliche Werte: 1 Feste Einspannung     Kein Lager
 %                               2 Loslager              Loslager
-%				ht ist die Länge eines Zeitschritts
+%				ht ist die Laenge eines Zeitschritts
 %				N ist ie Anzahl der Zeitschritte
 
-% Zuerst lösen wir den statischen Fall.
+% Zuerst loesen wir den statischen Fall.
 groesse=size(S);
 groesse=groesse(1);
 ed1=zeros(groesse,1);
@@ -34,12 +34,12 @@ end
 
 S_=[S ed1 ed2; ed1' 0 0; ed2' 0 0];
 
-%Der statische Fall ist gelöst, auf zum Dynamischen!
+%Der statische Fall ist geloest, auf zum Dynamischen!
 
-% M wird mir Nullen auf die Größe von S_ erweitert
+% M wird mir Nullen auf die Groeße von S_ erweitert
 M_ = [ M, zeros(groesse,2); zeros(2,groesse+2)];
 
-% Für den ersten Zwitschritt werden die Ableitungen auf 0 gesetzt
+% Fuer den ersten Zwitschritt werden die Ableitungen auf 0 gesetzt
 du = zeros(size(u_));
 ddu = zeros(size(u_));
 
@@ -47,7 +47,7 @@ ddu = zeros(size(u_));
 beta = 1/4;
 gamma = 1/2;
 
-% Erstellen der Lösungsmatrix U und Füllen mit dem Startwert
+% Erstellen der Loesungsmatrix U und Fuellen mit dem Startwert
 U=u_';
 
 for j=1:N
@@ -68,6 +68,6 @@ for j=1:N
     u_=u_new;
     du=du_new;
     ddu=ddu_new;
-    fprintf('%3i von %3i Zeitschritten gelöst.\n',j,N)
+    fprintf('%3i von %3i Zeitschritten geloest.\n',j,N)
 end
 end

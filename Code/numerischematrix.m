@@ -3,9 +3,9 @@ function M = numerischematrix( fun, L, n)
 %Eigenschaft, dass M(i,j) = Int(0,L,fun*ddphi_i*ddphi_j). Wobei:
 % ddphi_i die 2. Ableitung der i-ten Basisfunktion ist und entsprechend 
 % ddphi_j die 2. Ableitung der j-ten Basisfunktion.
-% fun ist eine beliebige Funktion in Abhängigkeit von x
-% L ist die Länge des Balkens
-% n ist die Anzahl der zu verwendenden Stützstellen
+% fun ist eine beliebige Funktion in Abhaengigkeit von x
+% L ist die Laenge des Balkens
+% n ist die Anzahl der zu verwendenden Stuetzstellen
 
 h = L / (n-1);
 X = linspace(0,L,n);

@@ -1,8 +1,8 @@
 function [ u , L1, L2 ] = statischebiegung( E, I, L, n, q, a, b, varargin)
 %STATISCHEBIEGUNG(E,I,L,n,q,a,b) Berechnet die Biegung nach der schwachen
 %Formulierung der statischen Biegedifferenzialgleichung. Dabei ist E(x) das
-%Elastizitätsmodul und I(x) das Flächenträgheitsmoment. L ist die Länge des
-%Balkens und n gibt die Anzahl der Stützstellen an.
+%Elastizitaetsmodul und I(x) das Flaechentraegheitsmoment. L ist die Laenge des
+%Balkens und n gibt die Anzahl der Stuetzstellen an.
 %
 %STATISCHEBIEGUNG(E,I,L,n,q,a,b,'fest_links') Berechnet die Biegelinie mit
 %einer festen linken Lagerung. Dabei ist dann:
@@ -14,13 +14,13 @@ function [ u , L1, L2 ] = statischebiegung( E, I, L, n, q, a, b, varargin)
 % a die Auslenkung an der Stelle 0
 % b die Auslenkung an der Stelle L
 %
-%  Der Rückgabevektor u enthält die numerischen Werte der Biegelinie des
+%  Der Rueckgabevektor u enthaelt die numerischen Werte der Biegelinie des
 %  Balkens. Dabei enthalten die Felder von u mit ungeraden Indizes die
-%  Werte der Biegelinie in äquidistanten Stützpunkten von 0 bis L. Die
+%  Werte der Biegelinie in aequidistanten Stuetzpunkten von 0 bis L. Die
 %  Felder mit geradem Index enthalten je die Werte der ersten Ableitung an
-%  einer solchen Stützstelle.
-% TODO was steckt in den Rückgabeparametern L1 und L2
-% [u,L1,L2] liefert zusätzlich zum Vektor u die harten Bedingungen L1 und
+%  einer solchen Stuetzstelle.
+% TODO was steckt in den Rueckgabeparametern L1 und L2
+% [u,L1,L2] liefert zusaetzlich zum Vektor u die harten Bedingungen L1 und
 % L2.
 
 if(numel(varargin) > 0) 

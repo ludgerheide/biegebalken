@@ -2,9 +2,9 @@ function q_ = qvektor(q,L,n)
 %QVEKTOR(q,L,n) Berechnet einen numerischen Vektor mit Streckenlast-
 %belegungen mit der Eigenschaft q(i) = Int(0,L,phi_i*q), dabei ist:
 % phi_i die i-te Basisfunktion.
-% q ist die Streckenlast in Abhängigkeit von x
-% L ist die Länge des Balkens
-% n ist die Anzahl der zu verwendenden Stützstellen
+% q ist die Streckenlast in Abhaengigkeit von x
+% L ist die Laenge des Balkens
+% n ist die Anzahl der zu verwendenden Stuetzstellen
 
 h = L / (n-1);
 X = linspace(0,L,n);

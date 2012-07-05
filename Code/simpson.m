@@ -1,6 +1,6 @@
 function [ S ] = simpson( f, a, b, n)
 %SIMPSON(f,a,b,n) Berechnet das numerische Integral von f im Intervall
-%[a,b] mit n Stützstellen mit Hilfe der Simpsonregel
+%[a,b] mit n Stuetzstellen mit Hilfe der Simpsonregel
 
 h = (b-a)/(n-1);
 x = linspace(a,b,n);

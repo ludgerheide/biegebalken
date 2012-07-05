@@ -1,18 +1,18 @@
 function q_ = create_q_num(q, n, L, precision)
 % Erstellt den Vektor q_ durch numerisches Integrieren
 % q ist die Streckenlast
-% n ist die Anzahl der Stützstellen
-% L idt die Länge des Balkens
+% n ist die Anzahl der Stuetzstellen
+% L idt die Laenge des Balkens
 % precision ist die Toleranz beim Integrieren
 
-% h ist die Länge eines Intervalls
+% h ist die Laenge eines Intervalls
 h = L/(n-1);
 
-% x ist ein Vektor von 0 bis L, der jeweils zwischen den Stützstellen
-% precision Werte enthält
+% x ist ein Vektor von 0 bis L, der jeweils zwischen den Stuetzstellen
+% precision Werte enthaelt
 x = linspace(0,L,(n-1)*(1/precision));
 
-%X ist ein Vektor, der die x-Koordinaten aller Knoten enthält
+%X ist ein Vektor, der die x-Koordinaten aller Knoten enthaelt
 X = linspace(0,L,n);
 
 % Erster und zweiter von Hand, um outofbounds zu vermeiden

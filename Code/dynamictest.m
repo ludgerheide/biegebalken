@@ -27,7 +27,7 @@ b=0;
 [u, L1, L2] = solve_static(S, q_, lager, a, b);
 u_=[u; L1; L2];
 
-%q für den dynamischen Fall
+%q fuer den dynamischen Fall
 
 q = @(x,t) sin(10*t);
 

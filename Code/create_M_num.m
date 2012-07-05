@@ -1,21 +1,21 @@
 function [ M ] = create_M_num( mu, L, n, precision )
-% Erstellt die Massenbelegungsmatrix M durch numerisches Lösen der Integrale.
+% Erstellt die Massenbelegungsmatrix M durch numerisches Loesen der Integrale.
 % mu ist die Massenbelegung
-% L ist die Länge des Balkens
+% L ist die Laenge des Balkens
 % n ist die Anzahl der Knoten
 
-% h ist die Länge eines Intervalls
+% h ist die Laenge eines Intervalls
 h = L/(n-1);
 
-%X ist ein Vektor, der die x-Koordinaten aller Knoten enthält
+%X ist ein Vektor, der die x-Koordinaten aller Knoten enthaelt
 X = linspace(0,L,n);
  
 %M erstellen
 M=zeros(2*n,2*n);
 
-% Matrix füllen
+% Matrix fuellen
 % Wir gehen jede Zeile der Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
-% und schreiben jeweils das zugehörige integral hin.
+% und schreiben jeweils das zugehoerige integral hin.
 
 for j = 1:1:2*n % Zeilen
     for k = j-3:1:j %Spalten

@@ -1,8 +1,8 @@
 function biegelinienfilm(U,L,fps,varargin)
-% Plottet den Film der Schwingung eines Balkens der Länge L
-% U ist eine Matrix, die Zeilenweise den Vektor u'(t) enthält.
-% Auslenkung sind die ungeraden Einträge von u
-% Steigung sind die geraden Einträge.
+% Plottet den Film der Schwingung eines Balkens der Laenge L
+% U ist eine Matrix, die Zeilenweise den Vektor u'(t) enthaelt.
+% Auslenkung sind die ungeraden Eintraege von u
+% Steigung sind die geraden Eintraege.
 
 if numel(varargin)>0
     tit = varargin{1};

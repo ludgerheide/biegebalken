@@ -1,23 +1,23 @@
 function [ S ] = create_S_num( E, I, L, n, precision )
-% Erstellt die Steifigkeitsmatrix S durch numerisches Lösen der Integrale.
+% Erstellt die Steifigkeitsmatrix S durch numerisches Loesen der Integrale.
 % E ist das E-Modul von x
-% I ist das Flächenträgheitsmoment 1. Ordnung von x
-% L ist die Länge des Balkens
+% I ist das Flaechentraegheitsmoment 1. Ordnung von x
+% L ist die Laenge des Balkens
 % n ist die Anzahl der Knoten
 
-% h ist die Länge eines Intervalls
+% h ist die Laenge eines Intervalls
 h = L/(n-1);
 
-%X ist ein Vektor, der die x-Koordinaten aller Knoten enthält
+%X ist ein Vektor, der die x-Koordinaten aller Knoten enthaelt
 X = linspace(0,L,n);
  
 %S erstellen
 S=zeros(2*n,2*n);
 
-% Matrix füllen
+% Matrix fuellen
 % TODO: Umbauen auf Switch
 % Wir gehen jede Zeile der Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
-% und schreiben jeweils das zugehörige integral hin.
+% und schreiben jeweils das zugehoerige integral hin.
 
 for j = 1:1:2*n % Zeilen
     for k = j-3:1:j %Spalten

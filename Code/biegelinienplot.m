@@ -1,9 +1,9 @@
 function [linie] = biegelinienplot( u, L )
-% Plottet die Biegelinie eines Balkens der Länge L
+% Plottet die Biegelinie eines Balkens der Laenge L
 % u ist ein Vektor, der abwechselnd Auslenkung und Steigung der Linie an
-% Punkten gleichen Abstandes enthält.
-% Auslenkung sind die ungeraden Einträge von u
-% Steigung sind die geraden Einträge.
+% Punkten gleichen Abstandes enthaelt.
+% Auslenkung sind die ungeraden Eintraege von u
+% Steigung sind die geraden Eintraege.
 
 n = length(u) / 2;
 h = L / (n-1);
@@ -15,8 +15,8 @@ phi_3 = @(xi) horner([ -2, 3, 0, 0 ],xi);
 
 
   function V = fitvalues(Y,x,U)
-    % Y enthält beliebig viele Werte ausschließlich im Bereich [x,x+h]
-    % U enthält 2 Werte; wenn x = X(i), dann 
+    % Y enthaelt beliebig viele Werte ausschließlich im Bereich [x,x+h]
+    % U enthaelt 2 Werte; wenn x = X(i), dann 
     %   U(1) = u(2*i-1) und 
     %   U(2) = u(2*i-1 + 2)
     % Sei x+h = X(j) = X(i+1), dann gilt x im Bereich [X(j)-h,X(j)] und 
@@ -29,8 +29,8 @@ phi_2 = @(xi) horner([ 1, -2, 1, 0 ],xi);
 phi_4 = @(xi) horner([ 1, -1, 0, 0 ],xi);
 
   function D = fitderivatives(Y,x,U)
-    % Y enthält beliebig viele Werte ausschließlich im Bereich [x,x+h]
-    % U enthält 2 Werte; wenn x = X(i), dann 
+    % Y enthaelt beliebig viele Werte ausschließlich im Bereich [x,x+h]
+    % U enthaelt 2 Werte; wenn x = X(i), dann 
     %   U(1) = u(2*i) und 
     %   U(2) = u(2*i + 2)
     Xi = (Y - x) / h;
