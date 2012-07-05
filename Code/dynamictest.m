@@ -6,19 +6,18 @@ system('rm output/*.png');
 %close all
 E=@(x)1;
 I=@(x)1;
-q=@(x)-1;
+q=@(x)0;
 
 mu=@(x)1;
-ht=1;
-N=3;
+ht=.001;
+N=120;
 
 L=2;
-n=3;
-precision=.001;
+n=15;
+precision=.000001;
 
 S=create_S_num(E,I,L,n,precision);
 q_=create_q_num(q,n,L,precision);
-M=create_M_num(mu,L,n,precision);
 
 lager='fest_links';
 a=0;
@@ -26,9 +25,14 @@ b=0;
 
 [u, L1, L2] = solve_static(S, q_, lager, a, b)
 
-u_=[u; L1; L2]
+u_=[zeros(size(u)-2,1); 1; -1; L1; L2];
 
-U=solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
+%q für den dynamischen Fall
+q=@(x)0;
+q_=create_q_num(q,n,L,precision);
+M=create_M_num(mu,L,n,precision);
+
+U=solve_dynamic(S, M, u_, q_, lager, a, b, ht, N);
 
 movie(U,L);
 
