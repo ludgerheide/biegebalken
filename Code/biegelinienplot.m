@@ -1,4 +1,4 @@
-function biegelinienplot( u, L )
+function [linie] = biegelinienplot( u, L )
 % Plottet die Biegelinie eines Balkens der Länge L
 % u ist ein Vektor, der abwechselnd Auslenkung und Steigung der Linie an
 % Punkten gleichen Abstandes enthält.
@@ -39,18 +39,22 @@ phi_4 = @(xi) horner([ 1, -1, 0, 0 ],xi);
 
   function Phi = phi(Y)
     Phi = zeros(size(Y));
+    in = length(Y)/(n-1);
     for i=1:n-1
       x=X(i);
-      which = find(x <= Y & Y <= x+h);
       Uvals = u(2*i-1:2:2*i-1+2);
       Uders = u(2*i:2:2*i+2);
-      Phi(which) = fitvalues(Y(which),x,Uvals) + fitderivatives(Y(which),x,Uders);
+
+      from = in*(i-1)+1;
+      to = in*i;
+      Phi(from:to) = fitvalues(Y(from:to),x,Uvals) + fitderivatives(Y(from:to),x,Uders);
     end
 
   end
-Yn = 100;
+Yn = ceil(100/(n-1))*(n-1);
 Y = linspace(0,L,Yn);
-plot(Y,phi(Y));
+linie = phi(Y);
+plot(Y,linie);
 
 end
 

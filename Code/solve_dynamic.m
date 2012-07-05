@@ -34,8 +34,6 @@ function [U] = solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
 	
 	S_=[S ed1 ed2; ed1' 0 0; ed2' 0 0];
 	
-	p_= [q_; a; b];
-	
 	%Der statische Fall ist gelöst, auf zum Dynamischen!
 	
 	% M wird mir Nullen auf die Größe von S_ erweitert
@@ -53,6 +51,9 @@ function [U] = solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
 	U=u_';
 	
 	for j=1:N
+                t=j*ht;
+	        p_= [q_(t); a; b];
+	
 		% Nach Aufschrieb Sitzung 3
 		u_star = u_ + du.*ht + (1/2 - beta)*ddu.*ht^2;
 		du_star = du + (1-gamma)*ddu.*ht;
@@ -67,5 +68,6 @@ function [U] = solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
 		u_=u_new;
 		du=du_new;
 		ddu=ddu_new;
+                % fprintf('%3i von %3i Zeitschritten gelöst.\n',j,N)
 	end
 end
