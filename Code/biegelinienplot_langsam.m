@@ -22,12 +22,15 @@ for i=1:n-1
     xs=(i-1)*h;
     xe=i*h;
     A=[xs^3 xs^2 xs 1; 3*xs^2 2*xs 1 0; xe^3 xe^2 xe 1; 3*xe^2 2*xe 1 0];
-    u_part = [u((2*(i-1)+1):2*i+2)]';
+    u_part = [u((2*(i-1)+1):2*i+2)];
     f=A\u_part;
     % Plotten des Lösungsstückes
     x=linspace(xs,xe,50);
     y=f(1)*x.^3+f(2)*x.^2+f(3)*x+f(4);
     plot(x,y);
 end
+filename=sprintf('bla.png');
+set(0, 'defaultfigurevisible', 'off');
+print(filename);
 end
    

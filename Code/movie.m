@@ -12,14 +12,14 @@ function movie(U,L)
 	n = (breite-2)/2;
 	h = L/(n-1);
 	auslenkungen=abs(U(1:end,1:2:breite-2));
-	umax=max(max(auslenkungen))
+	umax=max(max(auslenkungen));
 
 	%Beginn der Filmschleife
 	for j=1:hoehe
 	
-		u=U(j,1:breite-2)'
+		u=U(j,1:breite-2)';
 		% Vorbereiten des Plots
-		figure;
+		figure ("visible", "off");
 		hold on
 		axis([0,L,-umax,umax]);
 
@@ -38,5 +38,6 @@ function movie(U,L)
 		end
 	filename=sprintf('output/%05d.png',j);
 	print(filename);
+	%sprintf('%i von %i Bildern', j, hoehe)
 	end
 end
