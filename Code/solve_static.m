@@ -22,7 +22,7 @@ switch lager
         % Wir haben ein beideseitiges Loslager, a ist die Auslenkung am
         % Anfang, b die am Ende
         ed1(1)=1;
-        ed2(groesse-1)=-1;
+        ed2(groesse-1)=1;
 end
    
 CSST=[S ed1 ed2; ed1' 0 0; ed2' 0 0];
