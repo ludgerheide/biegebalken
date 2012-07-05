@@ -9,22 +9,26 @@ I=@(x)1;
 q=@(x)-1;
 
 mu=@(x)1;
-ht=.1;
-N=120;
+ht=1;
+N=3;
 
 L=2;
-n=15;
-precision=.000001;
+n=3;
+precision=.001;
 
 S=create_S_num(E,I,L,n,precision);
 q_=create_q_num(q,n,L,precision);
 M=create_M_num(mu,L,n,precision);
 
-lager='loslager';
-a=2;
-b=-2;
+lager='fest_links';
+a=0;
+b=0;
 
-U=solve_dynamic(S, M, q_, lager, a, b, ht, N);
+[u, L1, L2] = solve_static(S, q_, lager, a, b)
+
+u_=[u; L1; L2]
+
+U=solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
 
 movie(U,L);
 
