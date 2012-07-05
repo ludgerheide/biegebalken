@@ -22,9 +22,9 @@ S=zeros(2*n,2*n);
 for j = 1:1:2*n % Zeilen
     for k = j-3:1:j %Spalten
         if k<=0
-            sprintf('Nothing done, k<=0');
+            fprintf('Nothing done, k<=0\n');
         elseif k>2*n
-            sprintf('Nothing done, k>=2n');
+            fprintf('Nothing done, k>=2n\n');
         elseif j-k==3
             if mod(j,2)==0
                 S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),X((k+1)/2)-h,X(j/2)+h,precision);
@@ -51,7 +51,7 @@ for j = 1:1:2*n % Zeilen
                 S(j,k)=quad(@(x)(E(x).*I(x).*(phi2i_1(x,X,((j+1)/2),h,n).^2)),X((j+1)/2)-h,X((j+1)/2)+h,precision);
             end
         else
-            sprintf('Error in create_S');
+            fprintf('Error in create_S/n');
         end
     end
 end
