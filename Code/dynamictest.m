@@ -7,16 +7,15 @@ q=@(x)0;
 
 mu=@(x)1;
 
-global fps
 fps = 30;
-secs = 3;
+secs = 10;
 
 ht=1/fps;
 N=secs*fps;
 
 L=2;
-n=10;
-precision=.001;
+n=3;
+precision=.01;
 
 S=create_S_num(E,I,L,n,precision);
 q_=create_q_num(q,n,L,precision);
@@ -35,14 +34,8 @@ q = @(x,t) sin(10*t);
 q_= @(t) create_q_num(@(x)q(x,t),n,L,precision);
 M=create_M_num(mu,L,n,precision);
 
-% tic;
 U=solve_dynamic(S, M, u_, q_, lager, a, b, ht, N);
-% run=toc;
-% fprintf('Die Berechnung der Biegelinien dauerte %.2f Sekunden.\n', run)
 
-% tic;
-biegelinienfilm(U,L,'Links fest eingespannt mit hochfrequenter Sinus-Last.', {'biegelinie'},q);
-% run=toc;
-% fprintf('Die Berechnung der Plots dauerte %.2f Sekunden.\n', run)
+biegelinienfilm(U, L, fps, 'Links fest eingespannt mit hochfrequenter Sinus-Last.', {'biegelinie','streckenlast'}, q);
 
 end
