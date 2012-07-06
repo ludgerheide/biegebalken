@@ -62,6 +62,6 @@ for j=1:size(U,1)
     M(j) = getframe(gcf);
     fprintf('%i von %i Bildern gerendert\n', j, size(U,1));
 end
-close all;
-%movie2avi(M, 'output.avi', 'fps', fps);
+movie2avi(M, 'output.avi', 'fps', fps);
+close_all
 end
