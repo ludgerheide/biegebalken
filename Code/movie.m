@@ -22,7 +22,7 @@ function movie(U,L)
 
 		u=U(j,1:breite-2)';
 		% Vorbereiten des Plots
-		figure ("visible", "off");
+		figure ('visible', 'off');
 		hold on
 		axis([0,L,-umax,umax]);
 
