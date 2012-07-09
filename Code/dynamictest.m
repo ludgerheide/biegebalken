@@ -1,4 +1,7 @@
 function dynamictest
+% Rchtige Ausgabe in Octave
+more off;
+
 % Testet das dynamische Verhalten
 
 E=@(x)1;
@@ -11,25 +14,26 @@ mu=@(x)1;
 
 %Zeitfaktoren HIER
 fps = 30; %Bilder pro Sekunde im Video
-secs = 10; %Länge des Videos
-timescale=100; %Skalierung, <1 für zeitraffer, >1 für Zeitlupe
+secs = 60; %Laenge des Videos
+timescale=500; %Skalierung, <1 fuer zeitraffer, >1 fuer Zeitlupe
 
 ht=1/(timescale*fps);
 N=secs*fps;
 
 L=2;
 n=15;
-precision=.0001;
+precision=.000001;
 
 tic;
 S=create_S_num(E,I,L,n,precision);
 q_=create_q_num(q,n,L,precision);
 
-lager='loslager';
+lager='fest_links';
 a=0;
 b=0;
 
 [u, L1, L2] = solve_static(S, q_, lager, a, b);
+%u_=[u; L1; L2];
 u_=[zeros((2*n)-6,1); 0; 1; 1; 0; 0; 0; L1; L2];
 time=toc;
 fprintf('Statischer Fall in %2.1f Sekunden geloest.\n', time);
@@ -48,7 +52,7 @@ time=toc;
 fprintf('Dynamischer Fall in %2.1f Sekunden geloest.\n', time);
 
 tic;
-biegelinienfilm(U, L, fps, 'Welle im unbelasteten Walken, 100x Zeitlupe', q);
+movie(U, L, fps, 'Welle im unbelasteten Walken, 100x Zeitlupe', q);
 time=toc;
 fprintf('Dynamischer Fall in %2.1f Sekunden gefilmt.\n', time);
 

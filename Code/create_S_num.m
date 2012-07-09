@@ -18,13 +18,12 @@ S=zeros(2*n,2*n);
 % TODO: Umbauen auf Switch
 % Wir gehen jede Zeile der Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
 % und schreiben jeweils das zugehoerige integral hin.
-
 for j = 1:1:2*n % Zeilen
     for k = j-3:1:j %Spalten
         if k<=0
-            fprintf('Nothing done, k<=0\n');
+            %fprintf('Nothing done, k<=0\n');
         elseif k>2*n
-            fprintf('Nothing done, k>=2n\n');
+            %fprintf('Nothing done, k>=2n\n');
         elseif j-k==3
             if mod(j,2)==0
                 S(j,k)=quad(@(x)(E(x).*I(x).*phi2i(x,X,(j/2),h,n).*phi2i_1(x,X,((k+1)/2),h,n)),X((k+1)/2)-h,X(j/2)+h,precision);

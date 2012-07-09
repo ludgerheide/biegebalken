@@ -29,8 +29,6 @@ for i=1:n-1
     y=f(1)*x.^3+f(2)*x.^2+f(3)*x+f(4);
     plot(x,y);
 end
-filename=sprintf('bla.png');
-set(0, 'defaultfigurevisible', 'off');
-print(filename);
+
 end
    

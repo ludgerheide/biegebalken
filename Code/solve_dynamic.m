@@ -13,7 +13,7 @@ function [U] = solve_dynamic(S, M, u_, q_, lager, a, b, ht, N)
 %				ht ist die Laenge eines Zeitschritts
 %				N ist ie Anzahl der Zeitschritte
 
-% Zuerst loesen wir den statischen Fall.
+
 groesse=size(S);
 groesse=groesse(1);
 ed1=zeros(groesse,1);
@@ -52,19 +52,20 @@ U=u_';
 
 for j=1:N
     t=j*ht;
+    %fuer dynamische Streckenlast: p_= [q_(t); a; b];
     p_= [q_(t); a; b];
-    
+
     % Nach Aufschrieb Sitzung 3
     u_star = u_ + du.*ht + (1/2 - beta)*ddu.*ht^2;
     du_star = du + (1-gamma)*ddu.*ht;
-    
+
     ddu_new = ( M_ + beta * ht^2 * S_ ) \ (p_ - S_*u_star);
-    
+
     u_new = u_star + beta*ddu_new.*ht^2;
     du_new = du_star + gamma * ddu_new .* ht;
-    
+
     U(j+1,1:end)=u_new';
-    
+
     u_=u_new;
     du=du_new;
     ddu=ddu_new;
