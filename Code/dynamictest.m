@@ -1,4 +1,4 @@
-function dynamictest
+function U=dynamictest
 % Rchtige Ausgabe in Octave
 more off;
 
@@ -13,23 +13,23 @@ q=@(x)-1;
 mu=@(x)1;
 
 %Zeitfaktoren HIER
-fps = 1; %Bilder pro Sekunde im Video
-secs = 15; %Laenge des Videos
-timescale=1; %Skalierung, <1 fuer zeitraffer, >1 fuer Zeitlupe
+fps = 10; %Bilder pro Sekunde im Video
+secs = 1; %Laenge des Videos
+timescale=200; %Skalierung, <1 fuer zeitraffer, >1 fuer Zeitlupe
 
 ht=1/(timescale*fps);
 N=secs*fps;
 
 L=2;
-n=15;
-precision=.000001;
+n=5;
+precision=.00001;
 
 tic;
 S=create_S_num(E,I,L,n,precision);
 q_=create_q_num(q,n,L,precision);
 
 lager='fest_links';
-a=-1;
+a=0;
 b=0;
 
 [u, L1, L2] = solve_static(S, q_, lager, a, b);
@@ -53,7 +53,7 @@ time=toc;
 fprintf('Dynamischer Fall in %2.1f Sekunden geloest.\n', time);
 
 tic;
-biegelinienfilm(U, L, fps, '', q);
+biegelinienfilm(U, L, fps, 'Konstante Streckenlast',q);
 time=toc;
 fprintf('Dynamischer Fall in %2.1f Sekunden gefilmt.\n', time);
 
