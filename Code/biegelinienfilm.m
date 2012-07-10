@@ -47,7 +47,7 @@ for j=1:size(U,1)
         q = varargin{2};
         t = j/fps;
         X = linspace(0,L,length(linie));
-        Q = (umax * q(X,t) / qmax) + linie;
+        Q = (-umax * q(X,t) / qmax) + linie;
         
         plot(X,Q,'r');
         legend({'biegelinie','streckenlast'});

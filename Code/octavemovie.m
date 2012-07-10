@@ -1,4 +1,4 @@
-function movie(U,L,fps,varargin)
+function octavemovie(U,L,fps)
 % Plottet den Film der Schwingung eines Balkens der Laenge L
 % U ist eine Matrix, die Zeilenweise den Vektor u'(t) enthaelt.
 % Auslenkung sind die ungeraden Eintraege von u
@@ -44,11 +44,11 @@ function movie(U,L,fps,varargin)
         	legend( {'biegelinie',});
 
 		filename=sprintf('output/%05d.png',j);
-		print('-S1024,768',filename);
+		print('-dpng',filename);
 		fprintf('%i von %i Bildern gerendert\n', j, hoehe);
 	end
 	
 	%Erstellen des endgültigen Films
-	string=sprintf('mencoder mf://output/*.png -mf w=1024:h=768:fps=%i:type=png -quiet -ovc lavc -lavcopts vcodec=mpeg4:mbd=2:trell -oac copy -o output/outputdynamic.avi', fps);
+	string=sprintf('mencoder mf://output/*.png -mf w=1200:h=900:fps=%i:type=png -quiet -ovc lavc -lavcopts vcodec=mpeg4:mbd=2:trell -oac copy -o output/outputdynamic.avi', fps);
 	system(string);
 end

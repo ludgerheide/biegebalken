@@ -18,8 +18,8 @@ S=zeros(2*n,2*n);
 % TODO: Umbauen auf Switch
 % Wir gehen jede Zeile der Matrix im Abstand von bis zu 3 zur Hauptdiaginalen durch
 % und schreiben jeweils das zugehoerige integral hin.
-for j = 1:1:2*n % Zeilen
-    for k = j-3:1:j %Spalten
+for j = 1:2*n % Zeilen
+    for k = j-3:j %Spalten
         if k<=0
             %fprintf('Nothing done, k<=0\n');
         elseif k>2*n
