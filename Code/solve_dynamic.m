@@ -30,6 +30,12 @@ switch lager
         % Anfang, b die am Ende
         ed1(1)=1;
         ed2(groesse-1)=1;
+    case 'gleitlager'
+        % Wir haben ein Loslager links und ein Gleitlager Rechts
+        % a die Auslenkung rechts
+        % b die Steigung links
+        ed1(1)=1;
+        ed2(groesse)=1;
 end
 
 S_=[S ed1 ed2; ed1' 0 0; ed2' 0 0];
