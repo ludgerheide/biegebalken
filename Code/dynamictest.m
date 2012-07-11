@@ -13,22 +13,22 @@ q=@(x)-1;
 mu=@(x)1;
 
 %Zeitfaktoren HIER
-fps = 10; %Bilder pro Sekunde im Video
-secs = 1; %Laenge des Videos
-timescale=200; %Skalierung, <1 fuer zeitraffer, >1 fuer Zeitlupe
+fps = 15; %Bilder pro Sekunde im Video
+secs = 10; %Laenge des Videos
+timescale=1; %Skalierung, <1 fuer zeitraffer, >1 fuer Zeitlupe
 
 ht=1/(timescale*fps);
 N=secs*fps;
 
 L=2;
-n=5;
-precision=.00001;
+n=3;
+precision=.0001;
 
 tic;
 S=create_S_num(E,I,L,n,precision);
 q_=create_q_num(q,n,L,precision);
 
-lager='fest_links';
+lager='gleitlager';
 a=0;
 b=0;
 
@@ -40,7 +40,7 @@ fprintf('Statischer Fall in %2.1f Sekunden geloest.\n', time);
 
 tic;
 %q fuer den dynamischen Fall
-q = @(x,t)-1;
+q = @(x,t)0;
 q_= @(t) create_q_num(@(x)q(x,t),n,L,precision);
 %q_= @(t) create_q_num(q,n,L,precision);
 M=create_M_num(mu,L,n,precision);
@@ -53,7 +53,7 @@ time=toc;
 fprintf('Dynamischer Fall in %2.1f Sekunden geloest.\n', time);
 
 tic;
-biegelinienfilm(U, L, fps, 'Konstante Streckenlast',q);
+biegelinienfilm(U, L, fps, 'Schwingung im losgelagerten Balken');
 time=toc;
 fprintf('Dynamischer Fall in %2.1f Sekunden gefilmt.\n', time);
 
