@@ -25,7 +25,7 @@ for i=1:n
     
     f = @(x) q(x) .* phi_3((x-a)/h);
     q_(2*i-1) = q_(2*i-1) + simpson(f,a,b,N);
-    g = @(x) q(x) .* phi_4((x-a)/h);
+    g = @(x) q(x) .*h.* phi_4((x-a)/h);
     q_(2*i) = q_(2*i) + h*simpson(g,a,b,N);
   end
   if(i<n)
@@ -35,7 +35,7 @@ for i=1:n
     
     f = @(x) q(x) .* phi_1((x-a)/h);
     q_(2*i-1) = q_(2*i-1) + simpson(f,a,b,N);
-    g = @(x) q(x) .* phi_2((x-a)/h);
+    g = @(x) q(x) .*h.* phi_2((x-a)/h);
     q_(2*i) = q_(2*i) + simpson(g,X(i),X(i+1),N);
   end 
 end

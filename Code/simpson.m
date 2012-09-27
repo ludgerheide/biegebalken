@@ -5,10 +5,13 @@ function [ S ] = simpson( f, a, b, n)
 h = (b-a)/(n-1);
 x = linspace(a,b,n);
 
-y = f(x);
-y_inter = f( (x(1:end-1) + x(2:end)) / 2 );
+x_a = x(1:end-1);
+x_b = x(2:end);
+x_ab_2 = (x_a + x_b) / 2;
+% y = f(x);
+% y_inter = f( (x(1:end-1) + x(2:end)) / 2 );
 
-S = h / 6 * ( y(1) + 2 * sum(y(2:end-1)) + 4 * sum(y_inter) + y(end) );
+S = h / 6 * sum( f(x_a) + 4 * f(x_ab_2) + f(x_b) );
 
 
 end
