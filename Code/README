@@ -1,0 +1,58 @@
+Die Simulationen des dynamischen und statischen Falles werden über die 
+MATLAB-Funktionen statictest und dynamictest aufgerufen. Parameter 
+werden einfach durch Änderung der Eingabewerte in statictest oder 
+dynamictest geändert:
+
+Statictest hat folgende Änderungsmöglichkeiten:
+E(x), I(x):	Biegesteifigkeit des Balkens
+q(x):		Belastung (negativ für Belastung von oben, positiv für 
+			Belastung von unten)
+L:			Länge des Balkens
+n:			Anzahl der finiten Elemente
+precision:	Steuerung der Präzision - kleinere Werte sind genauer
+lagerung:	Gibt die Lagerungsfälle an
+	'fest_links'	einseitiges Festlager, a ist die Auslenkung am
+					Anfang, b ist die Steigung
+	'loslager'		beideseitiges Loslager, a ist die Auslenkung am
+					Anfang, b die am Ende
+	'gleitlager'	Loslager links und ein Gleitlager Rechts
+					a die Auslenkung rechts
+					b die Steigung links
+a:			Lagerparameter, siehe oben
+b:			Lagerparameter, siehe oben
+
+Dynamictest gibt das dynamische Verhalten des Biegebalkens als 
+output.avi in diesen Ordner aus. 
+BITTE BEACHTEN: Während das Video gerendert wird, kann Matlab leider 
+keine Fortschrittsanzeige geben. Bitte lassen Sie das Programm so 
+lange laufen, bis Matlab das Plotfenster schließt.
+Dynamictest bietet viele Konfigurationsmöglichkeiten:
+E(x), I(x):	Biegesteifigkeit des Balkens
+q(x):		Belastung (negativ für Belastung von oben, positiv für 
+			Belastung von unten)
+			#### Q IST VORSPANNUNG UND BELASTUNG WÄHREND DES SCHWINGENS
+			#### Vorspannung wird in Zeile 11 definiert
+			#### Belastung während des Schwingens wird in Zeile 44 
+			#### definiert
+mu(x):		Massenverteilung über den Balken
+fps:		Die Anzahl der Bilder pro Sekunde im Video. Empfohlen: 24
+			Höhere Werte ergeben einen flüssigeren Film bei längerer 
+			Renderzeit
+secs:		Dauer des Videos in Sekunden
+timescale:	Skalierung zwischen Simulationszeit und Filmzeit
+			<1 für Zeitraffer, >1 für Zeitlupe
+L:			Länge des Balkens
+n:			Anzahl der finiten Elemente
+precision:	Steuerung der Präzision - kleinere Werte sind genauer
+lagerung:	Gibt die Lagerungsfälle an
+	'fest_links'	einseitiges Festlager, a ist die Auslenkung am
+					Anfang, b ist die Steigung
+	'loslager'		beideseitiges Loslager, a ist die Auslenkung am
+					Anfang, b die am Ende
+	'gleitlager'	Loslager links und ein Gleitlager Rechts
+					a die Auslenkung rechts
+					b die Steigung links
+a:			Lagerparameter, siehe oben
+b:			Lagerparameter, siehe oben
+
+Bei Fragen: ludger.heide@gmail.com
