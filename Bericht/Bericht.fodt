@@ -41236,7 +41236,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
             </mfenced>
            </mrow>
           </mrow>
-          <annotation encoding="StarMath 5.0">left [matrix{S # {underline e} rsup {(0)} # {underline d} rsup {(0)} ## ({underline e} rsup {(0)}) rsup T # 0 # 0 ## ({underline d} rsup {(0)}) rsup T # 0 # 0 } right ] left [ matrix{ underline u ## Q rsup 0 ## M rsup 0 } right ] = left [ matrix{underline q + Q rsup L`{underline e} rsup {(L)} + M rsup L`{underline d} rsup {(L)} ## a ## b }right ]</annotation>
+          <annotation encoding="StarMath 5.0">left [matrix{S # {vec e} rsup {(0)} # {vec d} rsup {(0)} ## ({vec e} rsup {(0)}) rsup T # 0 # 0 ## ({vec d} rsup {(0)}) rsup T # 0 # 0 } right ] left [ matrix{ vec u ## Q rsup 0 ## M rsup 0 } right ] = left [ matrix{vec q + Q rsup L`{vec e} rsup {(L)} + M rsup L`{vec d} rsup {(L)} ## a ## b }right ]</annotation>
          </semantics>
         </math>
        </draw:object><draw:image>
@@ -41511,7 +41511,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
             <mi>a</mi>
            </mrow>
           </mrow>
-          <annotation encoding="StarMath 5.0">w(0) = a drarrow w rsub h(0) = a dlrarrow ({underline e} rsup {(0)}) rsup T`underline u = a</annotation>
+          <annotation encoding="StarMath 5.0">w(0) = a drarrow w rsub h(0) = a dlrarrow ({vec e} rsup {(0)}) rsup T`vec u = a</annotation>
          </semantics>
         </math>
        </draw:object><draw:image>
@@ -41674,7 +41674,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
             <mi>b</mi>
            </mrow>
           </mrow>
-          <annotation encoding="StarMath 5.0">w&apos;(0) = b drarrow w&apos; rsub h(0) = b dlrarrow ({underline d} rsup {(0)}) rsup T`underline u = b </annotation>
+          <annotation encoding="StarMath 5.0">w&apos;(0) = b drarrow w&apos; rsub h(0) = b dlrarrow ({vec d} rsup {(0)}) rsup T`vec u = b </annotation>
          </semantics>
         </math>
        </draw:object><draw:image>
@@ -42263,7 +42263,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
             </mfenced>
            </mrow>
           </mrow>
-          <annotation encoding="StarMath 5.0">left [matrix{S # {underline e} rsup {(0)} # - {underline e} rsup {(L)} ## ({underline e} rsup {(0)}) rsup T # 0 # 0 ## -({underline e} rsup {(L)}) rsup T # 0 # 0 } right ] left [ matrix{ underline u ## Q rsup 0 ## Q rsup L } right ] = left [ matrix{underline q - M rsup 0`{underline d} rsup {(0)} + M rsup L`{underline d} rsup {(L)} ## a ## b }right ]</annotation>
+          <annotation encoding="StarMath 5.0">left [matrix{S # {vec e} rsup {(0)} # - {vec e} rsup {(L)} ## ({vec e} rsup {(0)}) rsup T # 0 # 0 ## -({vec e} rsup {(L)}) rsup T # 0 # 0 } right ] left [ matrix{ vec u ## Q rsup 0 ## Q rsup L } right ] = left [ matrix{vec q - M rsup 0`{vec d} rsup {(0)} + M rsup L`{vec d} rsup {(L)} ## a ## b }right ]</annotation>
          </semantics>
         </math>
        </draw:object><draw:image>
@@ -42539,7 +42539,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
             <mi>a</mi>
            </mrow>
           </mrow>
-          <annotation encoding="StarMath 5.0">w(0) = a drarrow w rsub h(0) = a dlrarrow ({underline e} rsup {(0)}) rsup T`underline u = a</annotation>
+          <annotation encoding="StarMath 5.0">w(0) = a drarrow w rsub h(0) = a dlrarrow ({vec e} rsup {(0)}) rsup T`vec u = a</annotation>
          </semantics>
         </math>
        </draw:object><draw:image>
@@ -42703,7 +42703,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
             <mi>b</mi>
            </mrow>
           </mrow>
-          <annotation encoding="StarMath 5.0">w(L) = b drarrow w rsub h(L) = b dlrarrow -({underline e} rsup {(L)}) rsup T`underline u = b </annotation>
+          <annotation encoding="StarMath 5.0">w(L) = b drarrow w rsub h(L) = b dlrarrow -({vec e} rsup {(L)}) rsup T`vec u = b </annotation>
          </semantics>
         </math>
        </draw:object><draw:image>
@@ -43335,7 +43335,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
              </mfenced>
             </mrow>
            </mrow>
-           <annotation encoding="StarMath 5.0">left [matrix{S # {underline e} rsup {(0)} # - {underline e} rsup {(L)} ## ({underline e} rsup {(0)}) rsup T # 0 # 0 ## -({underline e} rsup {(L)}) rsup T # 0 # 0 } right ] left [ matrix{ underline u ## Q rsup 0 ## Q rsup L } right ] = left [ matrix{underline q - M rsup 0`{underline d} rsup {(0)} + M rsup L`{underline d} rsup {(L)} ## a ## b }right ]</annotation>
+           <annotation encoding="StarMath 5.0">left [matrix{S # {vec e} rsup {(0)} # - {vec e} rsup {(L)} ## ({vec e} rsup {(0)}) rsup T # 0 # 0 ## -({vec e} rsup {(L)}) rsup T # 0 # 0 } right ] left [ matrix{ vec u ## Q rsup 0 ## Q rsup L } right ] = left [ matrix{vec q - M rsup 0`{vec d} rsup {(0)} + M rsup L`{vec d} rsup {(L)} ## a ## b }right ]</annotation>
           </semantics>
          </math>
         </draw:object><draw:image>
@@ -43572,7 +43572,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -43788,7 +43788,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </msub>
          </mrow>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q = (int from 0 to L q`ϕ rsub j) rsub {j = 1,...,2`N}</annotation>
+        <annotation encoding="StarMath 5.0">vec q = (int from 0 to L q`ϕ rsub j) rsub {j = 1,...,2`N}</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -43875,7 +43875,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -44575,7 +44575,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -44720,7 +44720,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -44747,7 +44747,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -45165,7 +45165,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
               </msub>
              </mrow>
             </mrow>
-            <annotation encoding="StarMath 5.0">(tilde underline q) rsub{2`i-1} = S rsub{f,x rsub i, x rsub{i+1}}</annotation>
+            <annotation encoding="StarMath 5.0">(tilde vec q) rsub{2`i-1} = S rsub{f,x rsub i, x rsub{i+1}}</annotation>
            </semantics>
           </math>
          </draw:object><draw:image>
@@ -45500,7 +45500,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
               </msub>
              </mrow>
             </mrow>
-            <annotation encoding="StarMath 5.0">(tilde underline q)rsub{2`i} = S rsub{g,x rsub{i},x rsub{i+1}}</annotation>
+            <annotation encoding="StarMath 5.0">(tilde vec q)rsub{2`i} = S rsub{g,x rsub{i},x rsub{i+1}}</annotation>
            </semantics>
           </math>
          </draw:object><draw:image>
@@ -45930,7 +45930,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
               </msub>
              </mrow>
             </mrow>
-            <annotation encoding="StarMath 5.0">(circle underline q) rsub{2`i-1} = S rsub{f,x rsub i, x rsub{i+1}}</annotation>
+            <annotation encoding="StarMath 5.0">(circle vec q) rsub{2`i-1} = S rsub{f,x rsub i, x rsub{i+1}}</annotation>
            </semantics>
           </math>
          </draw:object><draw:image>
@@ -46265,7 +46265,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
               </msub>
              </mrow>
             </mrow>
-            <annotation encoding="StarMath 5.0">(circle underline q)rsub{2`i} = S rsub{g,x rsub{i},x rsub{i+1}}</annotation>
+            <annotation encoding="StarMath 5.0">(circle vec q)rsub{2`i} = S rsub{g,x rsub{i},x rsub{i+1}}</annotation>
            </semantics>
           </math>
          </draw:object><draw:image>
@@ -46343,7 +46343,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -46392,7 +46392,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mrow>
          </mrow>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q = tilde underline q + circle underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q = tilde vec q + circle vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -46446,7 +46446,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           <mo stretchy="false">̊</mo>
          </mover>
         </mrow>
-        <annotation encoding="StarMath 5.0">circle underline q</annotation>
+        <annotation encoding="StarMath 5.0">circle vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -46478,7 +46478,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           <mo stretchy="false">̃</mo>
          </mover>
         </mrow>
-        <annotation encoding="StarMath 5.0">tilde underline q</annotation>
+        <annotation encoding="StarMath 5.0">tilde vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -46507,7 +46507,7 @@ cdot left[ stack{vec u # Q^0 # M^0} right]= left[ stack{vec q # a # b} right]</a
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline q</annotation>
+        <annotation encoding="StarMath 5.0">vec q</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
@@ -51500,7 +51500,7 @@ alignl (S rsub{tilde i})rsub{j in 1,...,2`i-1-1 union 2`i+1,...,2`N,~k in 1,...,
           </mo>
          </munder>
         </mrow>
-        <annotation encoding="StarMath 5.0">underline u</annotation>
+        <annotation encoding="StarMath 5.0">vec u</annotation>
        </semantics>
       </math>
      </draw:object><draw:image>
